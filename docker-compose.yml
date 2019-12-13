@@ -1,0 +1,23 @@
+#replaces: docker container run -p 3000:3000 -v /app/client/node_modules -v $(pwd):/app/client ba451f8a04df
+version: '3'
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/client/node_modules
+      - .:/app/client
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+
+    volumes:
+      - /app/client/node_modules
+      - .:/app/client
+
+    command: ["npm", "run", "test"]
