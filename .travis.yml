@@ -10,3 +10,21 @@ before_install:
 
 script:
   - docker run -e CI=true sdhallam/docker-react npm run test
+
+deploy:
+  # edge: true
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: docker-react
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-265190774895"
+  bucket_path: docker-react
+  on:
+    branch: master
+
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
+# AKIAT3PU2DBXRJ2S4FMN
+# oFdVv94jdrFXahxb3Q8mcmjHvGIg5Khhm7pHQUBZ
